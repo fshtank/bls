@@ -12,7 +12,7 @@
 	<artifactId>bls</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>bls</name>
-	<description>Demo project for BLS Web Service Call</description>
+	<description>BLS Web Service Call</description>
 	<properties>
 		<java.version>17</java.version>
 		<springfox-version>2.8.0</springfox-version>

@@ -17,3 +17,4 @@ applications:
 services:
   - ELK-logging
   - config-server
+
