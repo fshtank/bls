@@ -1,0 +1,19 @@
+applications:
+  - name: bls-dev
+    instances: 2
+    memory: 1028M
+    disk_quota: 512M
+    stack: cflinuxfs3
+    random-route: true
+    buildpack: java_buildpack
+    routes:
+      - route: bls-dev.azure.com
+      - route: bls-dev.datacenter1.azure.com
+    env:
+      SPRING_PROFILES_ACTIVE: dev
+      JAVA_OPTS: -Duser.timezone=UTC
+    path: /bls-2.0.1-SNAPSHOT.jar
+
+services:
+  - ELK-logging
+  - config-server

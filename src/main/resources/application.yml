@@ -1,0 +1,19 @@
+spring:
+  profiles: dev
+  application:
+    name: Ofertas2.0
+
+  datasource:
+    driverClassName: org.apache.derby.jdbc.EmbeddedDriver
+    url: jdbc:derby:db/blsdb;create=true
+    username: admin
+    password: password
+    initializion-mode: true
+
+logging:
+  level:
+    org:
+      springframework:
+        boot:
+          autoconfigure:
+            security: ERROR

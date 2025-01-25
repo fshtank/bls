@@ -1,0 +1,37 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.fshtank.bls.configs;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+/**
+ * Configuration for Spring MVC Primarily giving us CORS config.
+ *
+ */
+@Configuration
+@ComponentScan(basePackages = "com.fshtank.bls")
+public class BlsWebConfig extends WebMvcConfigurerAdapter {
+
+    @Value("${cors.allowedOrigins:http://*bls.com}")
+    // Bluprint: @Value("*")
+    private String[] allowedOrigins;
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins(allowedOrigins)
+                .allowedMethods("PUT", "POST", "GET", "OPTIONS", "DELETE")
+                .allowedHeaders("x-requested-with")
+                .allowCredentials(true)
+                .maxAge(3600);
+    }
+
+
+}
