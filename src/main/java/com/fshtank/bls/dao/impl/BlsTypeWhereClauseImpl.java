@@ -1,22 +1,22 @@
 package com.fshtank.bls.dao.impl;
 
-
 import com.fshtank.bls.configs.SQLqueryConfigs;
+import com.fshtank.bls.dao.BlsTypeWhereClause;
+import com.fshtank.bls.dao.CampaignTypeWhereClause;
+import com.fshtank.bls.model.BlsType;
+import com.fshtank.bls.model.CampaignType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class BlsTypeWhereClauseImpl implements CampaignTypeWhereClause {
-
+public class BlsTypeWhereClauseImpl implements BlsTypeWhereClause {
     private static final Logger LOGGER = LogManager.getLogger(BlsTypeWhereClauseImpl.class);
 
     @Autowired
-
     SQLqueryConfigs sqlqry;
 
-
     @Override
-    public String getCampaignWhereClause(CampaignType campaignType) {
+    public String getCampaignWhereClause(BlsType campaignType) {
         String sqlWhereClause = null;
         switch (campaignType) {
             case VEHICLE:
@@ -41,4 +41,6 @@ public class BlsTypeWhereClauseImpl implements CampaignTypeWhereClause {
 
         return sqlWhereClause;
     }
+
+
 }

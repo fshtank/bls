@@ -1,16 +1,14 @@
 package com.fshtank.bls.dao;
 
 
-import com.fshtank.bls.model.BlsType;
 import com.fshtank.bls.model.CampaignType;
 
-public interface BlsTypeWhereClause {
+public interface CampaignTypeWhereClause {
 
     /**
      *
      * @param campaignType
      * @return
      */
-    public String getCampaignWhereClause (BlsType campaignType);
-
+    public String getCampaignWhereClause (CampaignType campaignType);
 }

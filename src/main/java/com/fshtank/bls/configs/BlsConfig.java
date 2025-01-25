@@ -7,10 +7,8 @@ package com.fshtank.bls.configs;
 
 import com.fshtank.bls.dao.BlsTypeWhereClause;
 import com.fshtank.bls.dao.BlsDataDao;
+import com.fshtank.bls.dao.impl.BlsDataDaoImpl;
 import com.fshtank.bls.dao.impl.BlsTypeWhereClauseImpl;
-import com.fshtank.bls.dao.impl.CampaignsDaoImpl;
-import com.fshtank.bls.dao.impl.OfertaServicoAcessorioDaoImpl;
-import com.fshtank.bls.dao.impl.OfertasDaoImpl;
 import com.fshtank.bls.model.BlsWebRequest;
 import com.fshtank.bls.service.BlsService;
 import com.fshtank.bls.service.impl.BlsServiceImpl;
@@ -33,7 +31,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 public class BlsConfig {
 
-    @Value("${application.name}")
+    @Value("BLS Demo App")
     private String applicationName;
 
     @Value("${BackupOfferTemplate}")
@@ -83,22 +81,17 @@ public class BlsConfig {
 
     @Bean
     public BlsDataDao getCampaignsDao() {
-        return new CampaignsDaoImpl();
-    }
-
-    @Bean
-    public OfertaServicoAcessorioDao getOfertaServicoAcessorioDao() {
-        return new OfertaServicoAcessorioDaoImpl();
-    }
-
-    @Bean
-    public OfertasDao getOfertasDao () {
-        return new OfertasDaoImpl();
+        return new BlsDataDaoImpl();
     }
 
     @Bean
     public BlsTypeWhereClause getCampaignTypeWhereClause() {
         return new BlsTypeWhereClauseImpl();
+    }
+
+    @Bean
+    public SQLqueryConfigs getSQLqueryConfigs() {
+        return new SQLqueryConfigs();
     }
 }
 
