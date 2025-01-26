@@ -1,5 +1,6 @@
 package com.fshtank.bls.controllers;
 
+import com.fshtank.bls.exceptions.ServiceNotAvailableException;
 import com.fshtank.bls.model.*;
 import com.fshtank.bls.service.BlsService;
 import org.apache.logging.log4j.LogManager;
@@ -29,6 +30,14 @@ public class BlsController extends BaseController {
     @Autowired
     private BlsWebRequest blsWebRequest;
 
+    @RequestMapping(value = "/helloworld",
+            method = RequestMethod.GET,
+            produces =
+                    {"application/vnd.status.v1+json;version=1.0",
+                            "application/vnd.status.v1+xml;version=1.0"  })
+    public String getHelloWorld () {
+        return "Hello World!";
+    }
 
     // https://cws.gm.com/ofertas/BR/pt?campaign=199&region=45
     // Compare Start End Dates to current date
@@ -70,7 +79,7 @@ public class BlsController extends BaseController {
             produces = {"application/vnd.status.v1+json;version=1.0",
                     "application/vnd.status.v1+xml;version=1.0"}
     )
-    public List<VBlsDataOperationalAreaCity> getOffers(@PathVariable ("locale") String locale,
+    public List<BlsData> getOffers(@PathVariable ("locale") String locale,
                                                        @PathVariable ("language") String language,
                                                        @PathVariable (value="campaignId") Long campaignId) {
 
@@ -78,7 +87,7 @@ public class BlsController extends BaseController {
         blsWebRequest.setLanguage(language);
         blsWebRequest.setvCampanhaId(campaignId);
 
-        List<VBlsDataOperationalAreaCity> vc = blsService.getCampaigns(blsWebRequest);
+        List<BlsData> vc = blsService.getCampaigns(blsWebRequest);
 
         return vc;
     }

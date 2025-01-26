@@ -9,15 +9,18 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 
 /**
  * Configuration for Spring MVC Primarily giving us CORS config.
  *
  */
+@EnableWebMvc
 @Configuration
 @ComponentScan(basePackages = "com.fshtank.bls")
-public class BlsWebConfig extends WebMvcConfigurerAdapter {
+public class BlsWebConfig implements WebMvcConfigurer {
 
     @Value("${cors.allowedOrigins:http://*bls.com}")
     // Bluprint: @Value("*")

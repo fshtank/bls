@@ -6,10 +6,8 @@
 package com.fshtank.bls.controllers;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-import com.gm.gsmc.shoppingtools.ofertas.exceptions.OfertasException;
+
+import com.fshtank.bls.exceptions.BlsException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,7 +19,7 @@ import java.util.List;
  * @author Rick Fisher (ess-zee-en-elef-zero) - Exception Man
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JacksonXmlRootElement(localName = "Error")
+//@JacksonXmlRootElement(localName = "Error")
 public class ErrorResponse {
 
     private static final Logger LOGGER = LogManager.getLogger(ErrorResponse.class);
@@ -53,7 +51,6 @@ public class ErrorResponse {
 
     private void populateStackTrace(Exception exception1) {
 
-        OfertasException oe = new OfertasException(errMsg);
 
         this.stackTrace = new ArrayList<>();
         for (StackTraceElement ste : exception1.getStackTrace()) {
@@ -76,14 +73,14 @@ public class ErrorResponse {
         return exception.toString();
     }
 
-    @JacksonXmlElementWrapper(localName = "AdditionalInfo", useWrapping = false)
+//    @JacksonXmlElementWrapper(localName = "AdditionalInfo", useWrapping = false)
     //@JacksonXmlProperty(localName = "Text")
     public List<String> getAdditionalInfo() {
         return additionalText;
     }
 
-    @JacksonXmlElementWrapper(localName = "StackTrace")
-    @JacksonXmlProperty(localName = "StackFrame")
+//    @JacksonXmlElementWrapper(localName = "StackTrace")
+//    @JacksonXmlProperty(localName = "StackFrame")
     public List<String> getStackTrace() {
         return stackTrace;
     }

@@ -5,12 +5,11 @@
  */
 package com.fshtank.bls.configs;
 
+import com.fshtank.bls.controllers.BlsController;
 import com.fshtank.bls.dao.BlsTypeWhereClause;
 import com.fshtank.bls.dao.BlsDataDao;
+import com.fshtank.bls.dao.impl.BlsDataDaoImpl;
 import com.fshtank.bls.dao.impl.BlsTypeWhereClauseImpl;
-import com.fshtank.bls.dao.impl.CampaignsDaoImpl;
-import com.fshtank.bls.dao.impl.OfertaServicoAcessorioDaoImpl;
-import com.fshtank.bls.dao.impl.OfertasDaoImpl;
 import com.fshtank.bls.model.BlsWebRequest;
 import com.fshtank.bls.service.BlsService;
 import com.fshtank.bls.service.impl.BlsServiceImpl;
@@ -33,17 +32,17 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 public class BlsConfig {
 
-    @Value("${application.name}")
+    @Value("BLS Demo App")
     private String applicationName;
 
-    @Value("${BackupOfferTemplate}")
-    private String backupOfferTemplate;
+//    @Value("${BackupOfferTemplate}")
+//    private String backupOfferTemplate;
 
-    @Value("${CgiBaseUrl}")
-    private String cgiBaseUrl;
-
-    @Value("${BackupImage}")
-    private String backupImage;
+//    @Value("${CgiBaseUrl}")
+//    private String cgiBaseUrl;
+//
+//    @Value("${BackupImage}")
+//    private String backupImage;
 
     /*
      * GETTERS and SETTERS
@@ -57,21 +56,17 @@ public class BlsConfig {
         System.out.println("Starting Application Name: " + this.applicationName);
     }
 
-    public String getBackupOfferTemplate() { return backupOfferTemplate; }
+//    @Bean
+//    public BlsController getBlsController() {
+//        return new BlsController();
+//    }
 
-    public String getCgiBaseUrl() { return cgiBaseUrl; }
-
-    public String getBackupImage() { return backupImage; }
-
-    @Bean
-    public BlsService getOfertasService () {
-        return new BlsServiceImpl();
-    }
 
     @Bean
-    public BlsService getCampaignsService() {
-        return new BlsServiceImpl();
+    public BlsDataDao getBlsDataDao() {
+        return new BlsDataDaoImpl();
     }
+
 
     @Bean
     public BlsService getBlsService() {
@@ -81,24 +76,15 @@ public class BlsConfig {
     @Bean
     public BlsWebRequest getOfertasWebRequest() { return new BlsWebRequest(); }
 
-    @Bean
-    public BlsDataDao getCampaignsDao() {
-        return new CampaignsDaoImpl();
-    }
-
-    @Bean
-    public OfertaServicoAcessorioDao getOfertaServicoAcessorioDao() {
-        return new OfertaServicoAcessorioDaoImpl();
-    }
-
-    @Bean
-    public OfertasDao getOfertasDao () {
-        return new OfertasDaoImpl();
-    }
 
     @Bean
     public BlsTypeWhereClause getCampaignTypeWhereClause() {
         return new BlsTypeWhereClauseImpl();
+    }
+
+    @Bean
+    public SQLqueryConfigs getSQLqueryConfigs() {
+        return new SQLqueryConfigs();
     }
 }
 

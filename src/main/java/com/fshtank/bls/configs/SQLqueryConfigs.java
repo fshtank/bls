@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
  * and make available to the Application.
  *
  */
-@Configuration
-@ComponentScan(basePackages = "com.fshtank.bls")
+// @Configuration
+//@ComponentScan(basePackages = "com.fshtank.bls")
 public class SQLqueryConfigs {
     @Value("${select.PbcOfertaVeiculo}")
     private String selectPbcOfertaVeiculo;

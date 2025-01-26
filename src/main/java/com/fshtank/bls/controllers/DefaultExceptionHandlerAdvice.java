@@ -5,8 +5,8 @@
  */
 package com.fshtank.bls.controllers;
 
-import com.gm.gsmc.shoppingtools.ofertas.exceptions.OfertasException;
-import com.gm.gsmc.shoppingtools.ofertas.exceptions.ServiceNotAvailableException;
+import com.fshtank.bls.exceptions.BlsException;
+import com.fshtank.bls.exceptions.ServiceNotAvailableException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -32,7 +32,7 @@ public class DefaultExceptionHandlerAdvice {
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     @ResponseBody
     public ResponseEntity<ErrorResponse> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException e) {
-        OfertasException oe = new OfertasException("Http method " + e.getMethod() + " Not Suppported by this resource");
+        BlsException oe = new BlsException("Http method " + e.getMethod() + " Not Suppported by this resource");
         return ResponseEntity.badRequest().body(new ErrorResponse(oe, false,
                 "Http method \"" + e.getMethod() + "\" Not Suppported by this resource"));
     }
@@ -46,7 +46,7 @@ public class DefaultExceptionHandlerAdvice {
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseBody
     public ResponseEntity<ErrorResponse> handleIllegalArgumentException(IllegalArgumentException e) {
-        OfertasException oe = new OfertasException("Invalid Parameters, something else if we had something else to say..");
+        BlsException oe = new BlsException("Invalid Parameters, something else if we had something else to say..");
         return ResponseEntity.badRequest()
                 .body(new ErrorResponse(
                         oe,
@@ -64,7 +64,7 @@ public class DefaultExceptionHandlerAdvice {
     @ExceptionHandler(ServiceNotAvailableException.class)
     @ResponseBody
     public ResponseEntity<ErrorResponse> handleServiceNotAvailable(ServiceNotAvailableException e) {
-        OfertasException oe = new OfertasException("A required datasource was not available. Attempting at a later time may succeed");
+        BlsException oe = new BlsException("A required datasource was not available. Attempting at a later time may succeed");
         return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
                 .body(new ErrorResponse(
                         oe,
@@ -83,7 +83,7 @@ public class DefaultExceptionHandlerAdvice {
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public ResponseEntity<ErrorResponse> handleException(Exception e) {
-        OfertasException oe = new OfertasException("An unexpected error occurred");
+        BlsException oe = new BlsException("An unexpected error occurred");
         return ResponseEntity.badRequest().body(new ErrorResponse(oe, "  An unexpected error occurred"));
     }
 }
