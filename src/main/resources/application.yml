@@ -1,14 +1,17 @@
 spring:
-  profiles: dev
+  config:
+    activate:
+      on-profile: dev
   application:
-    name: Ofertas2.0
+    name: BLSDemo
 
   datasource:
-    driverClassName: org.apache.derby.jdbc.EmbeddedDriver
-    url: jdbc:derby:db/blsdb;create=true
-    username: admin
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/bls_data
+    username: postgres
     password: password
     initializion-mode: true
+
 
 logging:
   level:
@@ -16,4 +19,10 @@ logging:
       springframework:
         boot:
           autoconfigure:
-            security: ERROR
+            security: DEBUG
+    com:
+      fshtank:
+        bls: DEBUG
+    web: DEBUG
+
+

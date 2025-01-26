@@ -17,7 +17,7 @@ public class BlsServiceImpl implements BlsService {
     private static final Logger LOGGER = LogManager.getLogger(BlsServiceImpl.class);
 
     @Autowired
-    private BlsDataDao blsDataDao;
+        private BlsDataDao blsDataDao;
 
     @Override
     public List<BlsData> getCampaigns(BlsWebRequest blsWebRequest) {

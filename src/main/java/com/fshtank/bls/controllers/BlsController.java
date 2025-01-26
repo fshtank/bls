@@ -30,6 +30,14 @@ public class BlsController extends BaseController {
     @Autowired
     private BlsWebRequest blsWebRequest;
 
+    @RequestMapping(value = "/helloworld",
+            method = RequestMethod.GET,
+            produces =
+                    {"application/vnd.status.v1+json;version=1.0",
+                            "application/vnd.status.v1+xml;version=1.0"  })
+    public String getHelloWorld () {
+        return "Hello World!";
+    }
 
     // https://cws.gm.com/ofertas/BR/pt?campaign=199&region=45
     // Compare Start End Dates to current date

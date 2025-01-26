@@ -60,7 +60,7 @@ public class JdbcConfig {
     }
 
     @Bean
-    public DataSource ofertaDataSource() {
+    public DataSource blsDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(this.getDriverClassName());
         dataSource.setUrl(this.getDatasourceUrl());
