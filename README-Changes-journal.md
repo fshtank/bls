@@ -28,4 +28,27 @@ docker run -d --name postgres -p 5432:5432 -e POSTGRES_PASSWORD='mypasswordsecre
 - 1/25 thru 1/26 Dockerize Postgres, remove Derby DB dependency
 
 ### DOCKERIZE APP
+- Merged Jan 2025 branch into Master as running application
+- adding "DOCKERFILE"
+- Documented [docs.docker build process](https://docs.docker.com/get-started/docker-concepts/building-images/build-tag-and-publish-an-image/)
+  - Publish Image to dockerhub
+  - also look to GitHub container registry
+
+### Build with eclipse-temurin
+- eclipse-temurin OPEN JDK reference: https://hub.docker.com/_/eclipse-temurin/
+` docker build -t fshtank/bls-build-image-demo .`
+
+### Tagging :
+`docker build -t fshtank/bls-build-image-demo:beta-001 .`
+
+### Delete an image (if needed)
+`docker rmi fshtank/bls-build-image-demo`
+
+# Docker Hub
+My `fshtank` repo
+https://hub.docker.com/u/fshtank 
+
+### Push image to Docker Hub
+`docker push fshtank/bls-build-image-demo:beta-001`
+
 
